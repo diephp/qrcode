@@ -47,5 +47,12 @@
     "vite": "^8.3.2",
     "vitest": "^5.0.3",
     "zxing-wasm": "^3.1.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/diephp/qrcode#readme",
+  "bugs": {
+    "url": "https://github.com/diephp/qrcode/issues"
   }
 }
