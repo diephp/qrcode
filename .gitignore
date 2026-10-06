@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.idea/
+old_src/
+*.log
+.DS_Store
+/.claude/

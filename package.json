@@ -1,0 +1,51 @@
+{
+  "name": "@diephp/qrcode",
+  "version": "1.0.0",
+  "description": "Compact browser QR code generator: styled dots and corners, logo with safe auto-sizing, SVG/PNG/JPEG/WebP export with transparency.",
+  "keywords": [
+    "qrcode",
+    "qr",
+    "svg",
+    "png",
+    "logo",
+    "styled",
+    "generator"
+  ],
+  "license": "MIT",
+  "author": "Die PHP",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diephp/qrcode.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json",
+    "dev": "vite demo",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^26.6.4",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3",
+    "zxing-wasm": "^3.1.4"
+  }
+}

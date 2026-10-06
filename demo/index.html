@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@diephp/qrcode playground</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font: 14px/1.4 system-ui, sans-serif; margin: 0; padding: 24px; background: #f6f4f2; color: #2b211c; }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+    .layout { display: grid; grid-template-columns: minmax(280px, 420px) 1fr; gap: 24px; align-items: start; }
+    form { display: grid; gap: 12px; background: #fff; padding: 16px; border-radius: 12px; }
+    fieldset { border: 1px solid #e6e0db; border-radius: 8px; padding: 8px 12px 12px; display: grid; gap: 8px; }
+    legend { font-weight: 600; }
+    label { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 8px; }
+    input[type=text], select { width: 100%; padding: 4px 6px; }
+    .preview { position: sticky; top: 24px; display: grid; gap: 12px; justify-items: start; }
+    .checker { padding: 16px; border-radius: 12px;
+      background: repeating-conic-gradient(#ddd 0 25%, #fff 0 50%) 0 0 / 20px 20px; }
+    #out svg { display: block; width: 360px; height: auto; }
+    .buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    button { padding: 6px 12px; border: 0; border-radius: 6px; background: #7a4a2a; color: #fff; cursor: pointer; }
+    #info, #error { font-family: ui-monospace, monospace; font-size: 12px; }
+    #error { color: #c00; }
+  </style>
+</head>
+<body>
+  <h1>@diephp/qrcode playground</h1>
+  <div class="layout">
+    <form id="form">
+      <label>Data <input type="text" name="data" value="https://demo.qr0.info" /></label>
+      <label>Size, px <input type="number" name="size" value="512" min="64" step="64" /></label>
+      <label>Margin <input type="number" name="margin" value="2" min="0" max="10" /></label>
+      <label>ECL <select name="ecl"><option value="">auto</option><option>L</option><option>M</option><option>Q</option><option>H</option></select></label>
+      <label>Background <span><input type="color" name="background" value="#ffffff" /> <input type="checkbox" name="transparent" /> transparent</span></label>
+      <fieldset>
+        <legend>Dots</legend>
+        <label>Type <select name="dotType"></select></label>
+        <label>Color <span><input type="color" name="dotColor" value="#4a3023" /> <input type="checkbox" name="gradient" /> gradient → <input type="color" name="dotColor2" value="#c0602a" /></span></label>
+      </fieldset>
+      <fieldset>
+        <legend>Corners</legend>
+        <label>Preset <select name="cornerType"></select></label>
+        <label>Outer <select name="outer"><option value="">from preset</option></select></label>
+        <label>Inner <select name="inner"><option value="">from preset</option></select></label>
+        <label>Color <input type="color" name="cornerColor" value="#4a3023" /></label>
+        <label>Inner color <input type="color" name="innerColor" value="#4a3023" /></label>
+      </fieldset>
+      <fieldset>
+        <legend>Logo</legend>
+        <label>Source <select name="logo">
+          <option value="">none</option>
+          <option value="svg" selected>SVG (fork & knife)</option>
+          <option value="png">PNG with alpha (generated)</option>
+          <option value="file">upload…</option>
+        </select></label>
+        <input type="file" name="file" accept="image/*" hidden />
+        <label>Size (0..1) <input type="range" name="logoSize" min="0.1" max="1" step="0.05" value="0.8" /></label>
+        <label>Padding <input type="range" name="logoPadding" min="0" max="2" step="0.25" value="0.5" /></label>
+        <label>Color <span><input type="checkbox" name="recolor" checked /> <input type="color" name="logoColor" value="#000000" /></span></label>
+        <label>Opacity <input type="range" name="logoOpacity" min="0" max="1" step="0.05" value="1" /></label>
+        <label>Background <span><input type="checkbox" name="logoBg" /> <input type="color" name="logoBgColor" value="#ffffff" /></span></label>
+        <label>Radius <input type="range" name="logoRadius" min="0" max="4" step="0.25" value="1" /></label>
+        <label>Hide dots <input type="checkbox" name="hideDots" checked /></label>
+      </fieldset>
+    </form>
+    <div class="preview">
+      <div class="checker"><div id="out"></div></div>
+      <div class="buttons">
+        <button data-format="svg">SVG</button>
+        <button data-format="png">PNG</button>
+        <button data-format="webp">WebP</button>
+        <button data-format="jpeg">JPEG</button>
+      </div>
+      <div id="info"></div>
+      <div id="error"></div>
+    </div>
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>
