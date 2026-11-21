@@ -1,6 +1,6 @@
 {
   "name": "@diephp/qrcode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compact browser QR code generator: styled dots and corners, logo with safe auto-sizing, SVG/PNG/JPEG/WebP export with transparency.",
   "keywords": [
     "qrcode",
